@@ -1,0 +1,92 @@
+html {
+    scroll-snap-type: y mandatory;
+}
+
+body {
+    background-color: white;
+}
+
+h1 {
+    text-align: center;
+    font-family:'Courier New', Courier, monospace;
+}
+
+p {
+    font-family: verdana;
+    font-size: 20px;
+}
+
+.headerContainer {
+    width: 100vw;
+    height: 100vh;
+    display: flex; 
+    justify-content: center; 
+    align-items: center;  
+}
+#headerPage {
+    scroll-snap-align: start;
+   
+}
+
+
+#email {
+    cursor: pointer;
+}
+
+#gallery img {
+    width: 100vw;   /* fill the full viewport width */
+    height: 100vh;  /* fill the full viewport height */
+    object-fit: contain; /* show the full image without cropping */
+    display: block;
+    scroll-snap-align: start; /* snap image to top of viewport */
+    }
+
+/* Fixed position for the buttons */
+.scroll-buttons {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.scroll-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+.scroll-button:hover {
+    opacity: 1;
+}
+
+.scroll-button img {
+    width: 60px; /* adjust as needed */
+    height: 60px;
+    display: block;
+}
+
+.freeDeliveryBanner {
+  display: flex;
+  width: 200vw; /* double width because of two images */
+  animation: scrollBanner 20s linear infinite;
+  scroll-snap-align: start;
+}
+
+.freeDeliveryBanner img {
+  width: 50%; /* each takes half the banner width */
+}
+
+
+@keyframes scrollBanner {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}

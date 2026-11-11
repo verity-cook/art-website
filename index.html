@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" href="style.css">
+
+<head>
+    <title>Verity Cook Art</title>
+</head>
+
+<body>
+    <div class="headerContainer" style="text-align: center;">
+        <div class="header" id="headerPage" style="text-align: center;">
+                <img src="images/HeaderTop.png" alt="Verity Cook">
+                <img src="images/HeaderEmail.png" alt="email" id="email">
+                <img src="images/HeaderBananaInfo.png" alt="banana", id="banana">
+        </div>
+    </div>
+
+    <div id="gallery" style="text-align:center" ></div>
+
+    <div class="scroll-buttons">
+        <button id="scrollUp" class="scroll-button">
+            <img src="images/Previous.png" alt="Scroll Up">
+        </button>
+        <button id="scrollDown" class="scroll-button">
+            <img src="images/Next.png" alt="Scroll Down">
+        </button>
+        <button id="scrollTop" class="scroll-button">
+            <img src="images/BackToTop.png" alt="Scoll To Top">
+        </button>
+    </div>
+
+    <!-- <div class="freeDeliveryBanner">        
+        <img src="images/FreeDelivery.png" alt="free delivery on orders over €5000">
+        <img src="images/FreeDelivery.png" alt="free delivery on orders over €5000">
+    </div> -->
+
+    <script>
+        function scaleHeader() {
+            const container = document.getElementById('headerPage');
+
+            const viewportWidth = window.innerWidth;
+            const viewportHeight = window.innerHeight;
+
+            const images = container.querySelectorAll('img');
+            let totalHeight = 0;
+            images.forEach(img => totalHeight += img.naturalHeight);
+            let totalWidth = 0;
+            images.forEach(img => totalWidth = img.naturalWidth);
+
+            // Calculate scale factor
+            const scaleheight = viewportHeight / totalHeight;
+            const scalewidth = viewportWidth / totalWidth;
+
+            // Apply transform scale to the whole wrapper
+            const scale = Math.min(scaleheight,scalewidth)
+            container.style.transform = `scale(${scale})`;
+            }
+
+        window.addEventListener('load', scaleHeader);
+        window.addEventListener('resize', scaleHeader);
+        
+        // copy email text to clipboard
+
+        const emailCopy = document.getElementById("email");
+        emailCopy.addEventListener("click", () => {
+        navigator.clipboard.writeText("verity.cook@hotmail.co.uk")
+        });
+
+        // click to get info
+
+        const imgInfo = document.getElementById("banana");
+        let labelled = false;
+        imgInfo.addEventListener("click", function () {
+        labelled = !labelled; // toggle state
+        imgInfo.src = labelled
+            ? "images/artLabelled/BananaLabelled.png"
+            : "images/HeaderBananaInfo.png";
+        });
+
+        // load images
+        const imageFolder = "images/art/";
+        const labelFolder = "images/artLabelled/";
+
+        const images = [
+        "ReillyAndMark",
+        "Finn",
+        "Pig",
+        "Mayank",
+        "WashAndGo",
+        "Alaric",
+        "John",
+        "Sisters",
+        "Grandma",
+        "Edenia",
+        "CowsInGalicia",
+        "Heidi",
+        "OmarAndEuyen",
+        "Nana",
+        "Zev",
+        ];
+
+        const gallery = document.getElementById("gallery");
+
+        images.forEach(imgName => {
+        const img = document.createElement("img");
+        img.src = imageFolder + imgName + ".png";
+        img.width = "100";
+        img.style.width = "100%";
+        img.loading = "lazy"; // improves page speed
+        img.id = imgName;
+
+        let labelled = false;
+
+        img.addEventListener("click", function () {
+        labelled = !labelled; // toggle state
+        img.src = labelled
+            ? labelFolder + imgName + "Labelled.png"
+            : imageFolder + imgName + ".png";
+        });
+
+        gallery.appendChild(img);
+        });
+
+
+        // Scroll amount and behavior
+        const scrollAmount = window.innerHeight;
+
+        document.getElementById("scrollDown").onclick = () => {
+        window.scrollBy({ top: scrollAmount, behavior: 'smooth'});
+        };
+
+        document.getElementById("scrollUp").onclick = () => {
+        window.scrollBy({ top: -scrollAmount, behavior: 'smooth'});
+        };
+
+        document.getElementById("scrollTop").onclick = () => {
+        window.scrollTo({ top: 0, behavior: 'smooth'});
+        };
+
+    </script>
+</body>
+
+</html>
